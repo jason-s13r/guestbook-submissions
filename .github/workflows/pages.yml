@@ -27,7 +27,7 @@ jobs:
         run: |
           wget https://github.com/jason-s13r/guestbook-playground/archive/refs/heads/main.zip
           unzip main.zip
-          mv -R ./guestbook-playground-main/* .
+          mv ./guestbook-playground-main/* .
           # rm ./src/submissions/*
           mv ./entries/* ./src/submissions/
           cd ./src
