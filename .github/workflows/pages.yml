@@ -5,9 +5,6 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
-env:
-  SUBMISSION_API: "https://api.guestbook.qot.nz/"
-
 permissions:
   contents: read
   pages: write
@@ -50,7 +47,7 @@ jobs:
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build parcel
-        run: npm run build -- --dist-dir public --detailed-report
+        run: SUBMISSION_API="https://api.guestbook.qot.nz/" npm run build -- --dist-dir public --detailed-report
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
