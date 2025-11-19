@@ -38,7 +38,6 @@ jobs:
             echo "------------------------------" >> ./submissions/index.html
           done < <(find ./submissions -type f | sort -r)
           cd ..
-          cwd
           tree -L 3
       - name: Setup Pages
         id: pages
