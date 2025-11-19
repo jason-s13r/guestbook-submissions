@@ -32,15 +32,14 @@ jobs:
           mv ./guestbook-playground-main/.posthtmlrc .
           # rm ./src/submissions/*
           mv ./entries/* ./src/submissions/
-          cd ./src
 
-          echo "" > ./submissions/index.html
+          rm ./src/submissions/index.html
+          echo "" > ./entries.html
           while IFS= read -r fname; do
-            echo "<include src=\"${fname}\"></include>" >> ./submissions/index.html
-            echo "------------------------------" >> ./submissions/index.html
-          done < <(find ./submissions -type f | sort -r)
-          cat ./submissions/index.html
-          cd ..
+            echo "<include src=\"${fname}\"></include>" >> ./entries.html
+            echo "------------------------------" >> ./entries.html
+          done < <(find ./src/submissions -type f | sort -r | sed 's|src/||g')
+          mv ./entries.html ./src/submissions/index.html
           tree -L 3
       - name: Setup Pages
         id: pages
