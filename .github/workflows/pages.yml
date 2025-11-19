@@ -28,6 +28,8 @@ jobs:
           wget https://github.com/jason-s13r/guestbook-playground/archive/refs/heads/main.zip
           unzip main.zip
           mv ./guestbook-playground-main/* .
+          mv ./guestbook-playground-main/.parcelrc .
+          mv ./guestbook-playground-main/.posthtmlrc .
           # rm ./src/submissions/*
           mv ./entries/* ./src/submissions/
           cd ./src
