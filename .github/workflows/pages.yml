@@ -50,7 +50,7 @@ jobs:
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build parcel
-        run: npm run build -- --dist-dir public --detailed-report
+        run: SUBMISSION_API={{env.SUBMISSION_API}} npm run build -- --dist-dir public --detailed-report
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
