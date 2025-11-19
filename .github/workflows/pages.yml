@@ -37,6 +37,7 @@ jobs:
             echo "<include src=\"${fname}\"></include>" >> ./submissions/index.html
             echo "------------------------------" >> ./submissions/index.html
           done < <(find ./submissions -type f | sort -r)
+          cat ./submissions/index.html
           cd ..
           tree -L 3
       - name: Setup Pages
