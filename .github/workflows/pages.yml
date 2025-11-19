@@ -26,10 +26,10 @@ jobs:
       - name: Get Guestbook
         run: |
           wget https://github.com/jason-s13r/guestbook-playground/archive/refs/heads/main.zip
-          unzip main.zip
-          # rm guestbook-playground-main/src/submissions/*
-          mv entries/* guestbook-playground-main/src/submissions/
-          cd guestbook-playground-main/src
+          unzip main.zip -d .
+          # rm ./src/submissions/*
+          mv ./entries/* ./src/submissions/
+          cd ./src
 
           echo "" > ./submissions/index.html
           while IFS= read -r fname; do
@@ -37,21 +37,17 @@ jobs:
             echo "------------------------------" >> ./submissions/index.html
           done < <(find ./submissions -type f | sort -r)
           cd ..
-
-
+          cwd
+          tree -L 3
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
       - name: Install Node.js dependencies
-        working-directory: guestbook-playground-main
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build parcel
-        working-directory: guestbook-playground-main
-        run: |
-          npm run build -- --dist-dir public --public-url "${{ steps.pages.outputs.base_url }}/" --detailed-report
+        run: npm run build -- --dist-dir public --public-url "${{ steps.pages.outputs.base_url }}/" --detailed-report
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-        working-directory: guestbook-playground-main
         with:
           path: ./public
 
