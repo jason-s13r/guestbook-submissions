@@ -26,7 +26,8 @@ jobs:
       - name: Get Guestbook
         run: |
           wget https://github.com/jason-s13r/guestbook-playground/archive/refs/heads/main.zip
-          unzip main.zip -d .
+          unzip main.zip
+          mv -R ./guestbook-playground-main/* .
           # rm ./src/submissions/*
           mv ./entries/* ./src/submissions/
           cd ./src
